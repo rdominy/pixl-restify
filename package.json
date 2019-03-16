@@ -1,0 +1,20 @@
+{
+ "name": "pixl-restify",
+ "version": "0.1.0",
+ "description": "Create JSON/REST APIs with pixl-server framework",
+ "author": "Robert Dominy <rdominy+github@gmail.com>",
+ "homepage": "https://github.com/rdominy/pixl-restify",
+ "license": "MIT",
+ "main": "pixl-restify.js",
+ "scripts": {
+  "test": "mocha test.js"
+ },
+ "bugs": {
+  "url": "https://github.com/rdominy/pixl-restify/issues"
+ },
+ "dependencies": {
+  "pixl-request": "^1.0.24",
+  "pixl-server": "^1.0.21",
+  "pixl-server-web": "^1.1.15"
+ }
+}
