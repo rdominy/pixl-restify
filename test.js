@@ -211,7 +211,7 @@ describe('PixlRestify', function() {
 				done();
 			})
 		})	
-		it('update counter', function(done) {
+		it('increment counter', function(done) {
 			request.json(`${SERVER_URL}Counter`, {id:"foo"}, {method: "PUT"}, function(err, resp, data) {
 				assert.ifError(err);
 				assert(data);
