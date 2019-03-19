@@ -211,6 +211,24 @@ describe('PixlRestify', function() {
 				done();
 			})
 		})	
+		it('update counter', function(done) {
+			request.json(`${SERVER_URL}Counter`, {id:"foo"}, {method: "PUT"}, function(err, resp, data) {
+				assert.ifError(err);
+				assert(data);
+				assert.equal(data.id, "foo");
+				assert.equal(data.value, 13);
+				done();
+			})
+		})
+		it('update counter with value', function(done) {
+			request.json(`${SERVER_URL}Counter`, {id:"foo", value:20}, {method: "PUT"}, function(err, resp, data) {
+				assert.ifError(err);
+				assert(data);
+				assert.equal(data.id, "foo");
+				assert.equal(data.value, 20);
+				done();
+			})
+		})
 	})
 })
 		

@@ -23,6 +23,10 @@ class MyService extends Component {
 		this.counters = new Map();
 	}
 
+	validate(method, args) {
+		return (typeof args.id == "undefined") ? "missing_param" : true;
+	}
+	
 	// Handles HTTP GET /myservice/rest/v1.0/Counter?id=blah
 	async getCounter(args) {
 		if (this.counters.has(args.id)) {
@@ -45,7 +49,7 @@ class MyService extends Component {
 				throw {code:'counter_exists', message:"Counter already created for " + args.id};
 		}
 	
-		var val = (typeof args.value != "undefined") parseInt(args.value) ? : 0;
+		var val = (typeof args.value != "undefined") ? parseInt(args.value) : 0;
 		this.counters.set(args.id, val);
 		
 		return {id: args.id, value: val};	
@@ -59,7 +63,7 @@ class MyService extends Component {
 	*/
 	async updateCounter(args) {
 		if (this.counters.has(args.id)) {
-			var val = (typeof args.value != "undefined") parseInt(args.value) ? : 1 + this.counters.get(args.id);
+			var val = (typeof args.value != "undefined") ? parseInt(args.value) : 1 + this.counters.get(args.id);
 			this.counters.set(args.id, val);
 			return {id: args.id, value: this.counters.get(args.id)}
 		}
