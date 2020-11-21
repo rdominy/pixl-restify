@@ -10,7 +10,9 @@ function cleanup() {
 	try {
 		fs.unlinkSync('/var/tmp/pixl_restify_unittest.log');
 	}
-	catch (e) {} // ignore
+	catch (e) {
+		// ignore
+	} 
 }
 
 function createServer(callback) {
@@ -68,6 +70,7 @@ class MyService extends Component {
 	
 	// Handles HTTP GET /myservice/rest/v1.0/Counter?id=blah
 	async getCounter(args) {
+		this.logDebug(5, "getCounter");
 		if (this.counters.has(args.id)) {
 			return {name: args.counter, value: this.counters.get(args.id)}
 		}
@@ -84,6 +87,7 @@ class MyService extends Component {
 		}
 	*/
 	async createCounter(args) {
+		this.logDebug(5, "createCounter");
 		if (this.counters.has(args.id)) {
 				throw {code:'counter_exists', message:"Counter already created for " + args.id};
 		}
@@ -101,6 +105,7 @@ class MyService extends Component {
 		}
 	*/
 	async updateCounter(args) {
+		this.logDebug(5, "updateCounter");
 		if (this.counters.has(args.id)) {
 			var val = (typeof args.value != "undefined") ? parseInt(args.value) : 1 + this.counters.get(args.id);
 			this.counters.set(args.id, val);
